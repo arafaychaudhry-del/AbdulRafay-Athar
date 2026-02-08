@@ -62,6 +62,7 @@
       "name": "Gift Guide Banner",
       "settings": {
         "background": "shopify://shop_images/Group_1000008197.png",
+        "mobile_background": "shopify://shop_images/Frame.png",
         "brand_text": "TISSO VISON",
         "top_text": "Find the ideal gift for your loved ones.",
         "top_button_text": "CHOOSE GIFT",
@@ -74,10 +75,79 @@
         "footer_text": "",
         "mobile_footer_text": ""
       }
+    },
+    "divider_XTw6ka": {
+      "type": "divider",
+      "name": "t:names.divider_section",
+      "settings": {
+        "color_scheme": "",
+        "section_width": "full-width",
+        "thickness": 1,
+        "corner_radius": "square",
+        "width_percent": 100,
+        "alignment_horizontal": "center",
+        "padding-block-start": 25,
+        "padding-block-end": 25
+      }
+    },
+    "product_grid_GbC6X8": {
+      "type": "product-grid",
+      "blocks": {
+        "product_U7CrYM": {
+          "type": "product",
+          "settings": {
+            "product": "black-leather-bag"
+          }
+        },
+        "product_eTqakm": {
+          "type": "product",
+          "settings": {
+            "product": "blue-silk-tuxedo"
+          }
+        },
+        "product_WxqrhW": {
+          "type": "product",
+          "settings": {
+            "product": "chequered-red-shirt"
+          }
+        },
+        "product_iqUiaf": {
+          "type": "product",
+          "settings": {
+            "product": "classic-leather-jacket"
+          }
+        },
+        "product_t7QdLJ": {
+          "type": "product",
+          "settings": {
+            "product": "classic-varsity-top"
+          }
+        },
+        "product_aRJgHz": {
+          "type": "product",
+          "settings": {
+            "product": "dark-denim-top"
+          }
+        }
+      },
+      "block_order": [
+        "product_U7CrYM",
+        "product_eTqakm",
+        "product_WxqrhW",
+        "product_iqUiaf",
+        "product_t7QdLJ",
+        "product_aRJgHz"
+      ],
+      "name": "Product Grid",
+      "settings": {
+        "heading": "Tisso vision in the wild"
+      }
     }
   },
   "order": [
     "main",
-    "gift_banner_jkYYEw"
+    "gift_banner_jkYYEw",
+    "divider_XTw6ka",
+    "product_grid_GbC6X8"
   ]
 }
