@@ -1,0 +1,408 @@
+<section class="gift-banner">
+
+  <!-- TOP BAR (ABOVE IMAGE) -->
+
+  <div class="gift-banner__topbar">
+    <button class="gift-banner__hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="gift-banner__brand">
+      {{ section.settings.brand_text }}
+    </div>
+
+    <div class="gift-banner__toptext">
+      {{ section.settings.top_text }}
+    </div>
+
+    <a href="{{ section.settings.top_button_link }}"
+       class="gift-banner__topbtn">
+      <span>{{ section.settings.top_button_text }} →</span>
+    </a>
+  </div>
+
+
+
+  <!-- MOBILE CONTENT (shows on mobile only) -->
+
+  <div class="gift-banner__mobile-content">
+    <h1>{{ section.settings.heading }}</h1>
+    <p>{{ section.settings.mobile_subheading }}</p>
+  </div>
+
+
+  <!-- DESKTOP IMAGE AREA -->
+
+  <div class="gift-banner__image gift-banner__image--desktop"
+       style="background-image: url({{ section.settings.background | image_url }});">
+
+    <div class="gift-banner__content">
+      <h1>{{ section.settings.heading }}</h1>
+      <p>{{ section.settings.subheading }}</p>
+
+      <a href="{{ section.settings.button_link }}"
+         class="gift-banner__btn">
+        <span>{{ section.settings.button_text }} →</span>
+      </a>
+    </div>
+
+  </div>
+
+
+
+  <!-- MOBILE IMAGE AREA -->
+
+  <div class="gift-banner__image gift-banner__image--mobile"
+       style="background-image: url({{ section.settings.mobile_background | image_url }});">
+
+    <a href="{{ section.settings.button_link }}"
+       class="gift-banner__btn">
+      <span>{{ section.settings.button_text }} →</span>
+    </a>
+
+  </div>
+  
+
+
+  <!-- FOOTER (BELOW IMAGE) -->
+
+  <div class="gift-banner__footer gift-banner__footer--desktop">
+    {{ section.settings.footer_text }}
+  </div>
+
+
+
+  <!-- MOBILE FOOTER -->
+
+  <div class="gift-banner__footer gift-banner__footer--mobile">
+    {{ section.settings.mobile_footer_text }}
+  </div>
+
+</section>
+
+
+
+<style>
+
+
+/* =========================================================
+   Gift Guide Banner Styles
+   ========================================================= */
+
+
+/* Hamburger menu - hidden on desktop */
+
+.gift-banner__hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+
+
+.gift-banner__hamburger span {
+  width: 20px;
+  height: 2px;
+  background: #000;
+  display: block;
+}
+
+
+
+/* TOP BAR */
+
+.gift-banner__topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 40px;
+  background: #f5f5f5;
+}
+
+
+.gift-banner__brand {
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 20px;
+}
+
+
+
+.gift-banner__toptext {
+  font-size: 14px;
+}
+
+
+
+/* =============================
+   BUTTON SLIDE EFFECT
+   ============================= */
+
+
+.gift-banner__topbtn,
+.gift-banner__btn {
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+
+.gift-banner__topbtn span,
+.gift-banner__btn span {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* sliding layer */
+
+.gift-banner__topbtn::before,
+.gift-banner__btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  transition: left 0.35s ease;
+  z-index: 1;
+}
+
+
+/* Yellow button */
+
+.gift-banner__topbtn {
+  background: #f2e400;
+  padding: 12px 18px;
+  color: #000;
+  font-weight: 600;
+}
+
+
+.gift-banner__topbtn::before {
+  background: #000;
+}
+
+
+.gift-banner__topbtn:hover::before {
+  left: 0;
+}
+
+
+.gift-banner__topbtn:hover {
+  color: #fff;
+}
+
+
+/* Black button */
+
+.gift-banner__btn {
+  background: #000;
+  color: #fff;
+  padding: 12px 40px;
+  display: inline-block;
+}
+
+
+.gift-banner__btn::before {
+  background: #f2e400;
+}
+
+
+.gift-banner__btn:hover::before {
+  left: 0;
+}
+
+
+.gift-banner__btn:hover {
+  color: #000;
+}
+
+
+/* Hide mobile content on desktop */
+
+.gift-banner__mobile-content {
+  display: none;
+}
+
+
+.gift-banner__image--mobile {
+  display: none;
+}
+
+
+.gift-banner__footer--mobile {
+  display: none;
+}
+
+
+
+/* IMAGE AREA */
+
+.gift-banner__image {
+  position: relative;
+  min-height: 680px;
+  background-size: cover;
+  background-position: center;
+}
+
+
+.gift-banner__content {
+  position: absolute;
+  left: 60px;
+  bottom: 10px;
+  max-width: 370px;
+}
+
+
+.gift-banner__content h1 {
+  font-size: 56px;
+  line-height: 1.05;
+  margin-bottom: 16px;
+  white-space: nowrap;
+}
+
+
+.gift-banner__content p {
+  font-size: 15px;
+  margin-bottom: 24px;
+}
+
+
+/* FOOTER */
+
+.gift-banner__footer {
+  text-align: center;
+  padding: 16px 20px;
+  font-size: 12px;
+  background: #f5f5f5;
+}
+
+
+
+/* =========================================================
+   MOBILE STYLES
+   ========================================================= */
+
+
+
+@media (max-width: 768px) {
+
+  .gift-banner__hamburger {
+    display: flex;
+    position: absolute;
+    left: 20px;
+  }
+
+
+  .gift-banner__topbar {
+    position: relative;
+    justify-content: center;
+    padding: 20px;
+  }
+
+
+  .gift-banner__toptext,
+  .gift-banner__topbtn {
+    display: none;
+  }
+
+
+  .gift-banner__brand {
+    font-size: 20px;
+    letter-spacing: 0.1em;
+    text-align: center;
+  }
+
+
+  .gift-banner__mobile-content {
+    display: block;
+    padding: 24px 20px 32px;
+    text-align: center;
+    background: #fff;
+  }
+
+
+  .gift-banner__content {
+    display: none;
+  }
+
+
+  .gift-banner__image--desktop {
+    display: none;
+  }
+
+
+  .gift-banner__image--mobile {
+    display: block;
+  }
+
+
+  .gift-banner__image {
+    min-height: 320px;
+  }
+
+
+  .gift-banner__btn {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+
+  .gift-banner__footer--desktop {
+    display: none;
+  }
+
+
+  .gift-banner__footer--mobile {
+    display: block;
+  }
+
+
+  .gift-banner__footer {
+    font-size: 11px;
+    padding: 16px;
+  }
+}
+
+</style>
+
+
+
+
+{% schema %}
+{
+  "name": "Gift Guide Banner",
+  "settings": [
+    { "type": "image_picker", "id": "background", "label": "Desktop Background Image" },
+    { "type": "image_picker", "id": "mobile_background", "label": "Mobile Background Image" },
+    { "type": "text", "id": "brand_text", "label": "Brand text", "default": "TISSO VISON" },
+    { "type": "text", "id": "top_text", "label": "Top text", "default": "Find the ideal gift for your loved ones." },
+    { "type": "text", "id": "top_button_text", "label": "Top button text", "default": "CHOOSE GIFT" },
+    { "type": "url", "id": "top_button_link", "label": "Top button link" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The Gift Guide" },
+    { "type": "textarea", "id": "subheading", "label": "Desktop Description" },
+    { "type": "textarea", "id": "mobile_subheading", "label": "Mobile Description" },
+    { "type": "text", "id": "button_text", "label": "Main button text", "default": "SHOP NOW" },
+    { "type": "url", "id": "button_link", "label": "Main button link" },
+    { "type": "text", "id": "footer_text", "label": "Desktop Footer Text" },
+    { "type": "text", "id": "mobile_footer_text", "label": "Mobile Footer Text" }
+  ],
+  "presets": [{ "name": "Gift Guide Banner" }]
+}
+{% endschema %}
