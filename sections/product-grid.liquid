@@ -9,7 +9,10 @@
       {% assign product = block.settings.product %}
       {% if product %}
         <div class="product-grid__item">
-          <div class="product-grid__image-wrapper" data-handle="{{ product.handle }}">
+          <div
+            class="product-grid__image-wrapper"
+            data-handle="{{ product.handle }}"
+          >
             <img
               src="{{ product.featured_image | image_url: width: 500 }}"
               srcset="
@@ -24,10 +27,14 @@
               loading="lazy"
             >
 
-            <button class="product-grid__hotspot" aria-label="Open product">+</button>
+            <button class="product-grid__hotspot" aria-label="Open product">
+              +
+            </button>
 
-            <div class="product-quick-view__box" style="display:none;">
+            <!-- Quick View Box - Horizontal Stripe -->
+            <div class="product-quick-view__box" style="display: none;">
               <button class="product-quick-view__close" aria-label="Close">×</button>
+              
               <div class="product-quick-view__image-wrapper">
                 <img
                   class="product-quick-view__image"
@@ -37,6 +44,7 @@
                   height="70"
                 >
               </div>
+              
               <div class="product-quick-view__content">
                 <h3 class="product-quick-view__title"></h3>
                 <p class="product-quick-view__price"></p>
@@ -50,6 +58,7 @@
 
 </section>
 
+<!-- FULL POPUP -->
 <div class="product-popup" aria-hidden="true">
   <div class="product-popup__overlay"></div>
 
@@ -85,19 +94,19 @@
 
 <style>
 .product-grid {
-  padding: 112px 92px;
+  padding: 100px 80px;
 }
 
 .product-grid__header h2 {
-  font-size: 30px;
-  margin-bottom: 56px;
+  font-size: 28px;
+  margin-bottom: 48px;
   font-weight: 600;
 }
 
 .product-grid__wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 26px;
+  gap: 22px;
 }
 
 .product-grid__image-wrapper {
@@ -115,10 +124,10 @@
 
 .product-grid__hotspot {
   position: absolute;
-  top: 14px;
-  right: 14px;
-  width: 34px;
-  height: 34px;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
   background: #fff;
   border-radius: 50%;
   border: none;
@@ -131,7 +140,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   z-index: 2;
 }
 
@@ -139,32 +148,35 @@
   opacity: 1;
 }
 
+/* Quick View Box - Horizontal Stripe Design */
 .product-quick-view__box {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  min-width: 240px;
-  max-width: 88%;
+  width: auto;
+  min-width: 220px;
+  max-width: 85%;
   background: #fff;
-  box-shadow: 0 4px 22px rgba(0,0,0,0.25);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
   cursor: pointer;
   transition: transform 0.2s ease;
-  padding: 12px;
+  padding: 10px;
   z-index: 10;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
 
 .product-quick-view__box:hover {
-  transform: translate(-50%, -50%) scale(1.04);
+  transform: translate(-50%, -50%) scale(1.03);
 }
 
 .product-quick-view__close {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 4px;
+  right: 4px;
   background: #fff;
   border: none;
   font-size: 16px;
@@ -175,31 +187,61 @@
   align-items: center;
   justify-content: center;
   line-height: 1;
+  z-index: 10;
   font-weight: 300;
+  color: #000;
+  transition: all 0.2s ease;
+  padding: 0;
   border-radius: 50%;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
+.product-quick-view__close:hover {
+  background: #f0f0f0;
+  transform: rotate(90deg);
+}
+
 .product-quick-view__image-wrapper {
-  width: 74px;
-  height: 74px;
+  width: 70px;
+  height: 70px;
   flex-shrink: 0;
+}
+
+.product-quick-view__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .product-quick-view__content {
   flex: 1;
-  padding-right: 22px;
+  text-align: left;
+  padding-right: 20px;
+  min-width: 0;
 }
 
 .product-quick-view__title {
-  font-size: 14px;
-  margin-bottom: 5px;
+  font-size: 13px;
+  font-weight: 400;
+  margin: 0 0 4px 0;
+  color: #000;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .product-quick-view__price {
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 400;
+  margin: 0;
+  color: #000;
 }
 
+/* Popup */
 .product-popup {
   position: fixed;
   inset: 0;
@@ -207,156 +249,777 @@
   z-index: 9999;
   align-items: flex-start;
   justify-content: center;
-  padding-top: 72px;
+  padding-top: 60px;
 }
 
 .product-popup[aria-hidden="false"] {
   display: flex;
 }
 
+.product-popup__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
 .product-popup__card {
-  width: 380px;
-  box-shadow: 0 4px 22px rgba(0,0,0,0.18);
+  position: relative;
+  width: 360px;
+  background: #fff;
+  z-index: 1;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+}
+
+.product-popup__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 26px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  z-index: 10;
+  font-weight: 300;
+  color: #000;
+  transition: opacity 0.2s ease;
+  padding: 0;
+}
+
+.product-popup__close:hover {
+  opacity: 0.6;
 }
 
 .product-popup__top {
-  gap: 16px;
-  padding: 22px 22px 18px;
+  display: flex;
+  gap: 14px;
+  padding: 20px 20px 16px 20px;
+  align-items: stretch;
 }
 
-.product-popup__footer {
-  padding: 20px 22px 26px;
+.product-popup__image-wrapper {
+  flex-shrink: 0;
+  width: 110px;
+  display: flex;
+  align-items: stretch;
 }
 
-.product-popup__add {
-  padding: 16px 26px;
+.product-popup__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.product-popup__header {
+  flex: 1;
+  padding-top: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.product-popup__title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 6px 0;
+  color: #000;
+  line-height: 1.3;
+}
+
+.product-popup__price {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 0 10px 0;
+  color: #000;
+}
+
+.product-popup__description {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #666;
+  margin: 0;
+  flex: 1;
+}
+
+.product-popup__options {
+  padding: 0 20px;
+  flex: 1;
+}
+
+.option-group {
+  margin-bottom: 14px;
+}
+
+.option-group:last-child {
+  margin-bottom: 0;
+}
+
+.option-group label {
+  display: block;
   font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #000;
 }
 
+/* Color Options - Side by side boxes */
+.color-options-wrapper {
+  display: flex;
+  gap: 0;
+  border: 1px solid #000;
+}
+
+.color-option {
+  flex: 1;
+  padding: 12px 10px;
+  border: none;
+  border-right: 1px solid #000;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-transform: capitalize;
+  margin: 0;
+}
+
+.color-option:last-child {
+  border-right: none;
+}
+
+.color-option:hover {
+  background: #f0f0f0;
+}
+
+.color-option.active {
+  background: #000;
+  color: #fff;
+}
+
+/* Regular Dropdown - matches color box width */
+.option-group select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #000;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 400;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23000' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+  border-radius: 0;
+}
+
+.option-group select:focus {
+  outline: none;
+  border-color: #000;
+}
+
+.option-group select:hover {
+  background-color: #fafafa;
+}
+
+/* Footer with button matching dropdown width */
+.product-popup__footer {
+  padding: 18px 20px 24px 20px;
+  background: #fff;
+}
+
+/* Add to Cart Button - full width like dropdown */
+.product-popup__add {
+  width: 100%;
+  padding: 14px 24px;
+  background: #000;
+  color: #fff;
+  border: none;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.product-popup__add:hover {
+  background: #333;
+}
+
+.product-popup__add:active {
+  transform: scale(0.98);
+}
+
+.product-popup__add .arrow {
+  font-size: 16px;
+  transition: transform 0.2s ease;
+}
+
+.product-popup__add:hover .arrow {
+  transform: translateX(2px);
+}
+
+.product-popup__add:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* MOBILE VIEW - ALL YOUR REQUIREMENTS */
 @media (max-width: 768px) {
   .product-grid {
-    padding: 28px 18px;
+    padding: 24px 16px;
+    display: block;
+  }
+
+  .product-grid__header {
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .product-grid__header h2 {
+    font-size: 24px;
+    margin: 0;
+    font-weight: 600;
+    line-height: 1.3;
   }
 
   .product-grid__wrapper {
     grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+    gap: 12px;
+  }
+
+  .product-grid__item {
+    border: 0.5px solid #e0e0e0;
+  }
+
+  .product-grid__hotspot {
+    opacity: 0;
+    top: 8px;
+    right: 8px;
+    width: 26px;
+    height: 26px;
+    font-size: 16px;
+  }
+
+  .product-grid__image-wrapper:active .product-grid__hotspot {
+    opacity: 1;
+  }
+
+  /* Quick View Mobile - Horizontal Stripe */
+  .product-quick-view__box {
+    min-width: 160px;
+    max-width: 90%;
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .product-quick-view__image-wrapper {
+    width: 55px;
+    height: 55px;
+  }
+
+  .product-quick-view__content {
+    padding-right: 16px;
+  }
+
+  .product-quick-view__title {
+    font-size: 11px;
+    margin-bottom: 3px;
+  }
+
+  .product-quick-view__price {
+    font-size: 11px;
+  }
+
+  .product-quick-view__close {
+    top: 3px;
+    right: 3px;
+    width: 18px;
+    height: 18px;
+    font-size: 14px;
+  }
+
+  /* Full Popup Mobile */
+  .product-popup {
+    padding: 16px;
+    align-items: center;
   }
 
   .product-popup__card {
-    max-width: 320px;
+    width: 100%;
+    max-width: 300px;
+    max-height: 80vh;
+    overflow-y: auto;
   }
 
   .product-popup__top {
-    padding: 14px;
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .product-popup__image-wrapper {
+    width: 70px;
+  }
+
+  .product-popup__title {
+    font-size: 13px;
+    margin-bottom: 3px;
+  }
+
+  .product-popup__price {
+    font-size: 13px;
+    margin-bottom: 5px;
+  }
+
+  .product-popup__description {
+    font-size: 10px;
+    line-height: 1.4;
+  }
+
+  .product-popup__options {
+    padding: 0 12px;
+  }
+
+  .option-group {
+    margin-bottom: 8px;
+  }
+
+  .option-group label {
+    font-size: 11px;
+    margin-bottom: 4px;
+  }
+
+  .color-option {
+    padding: 8px 5px;
+    font-size: 10px;
+  }
+
+  .option-group select {
+    padding: 8px 10px;
+    font-size: 10px;
+    padding-right: 28px;
+    background-position: right 8px center;
+    background-size: 10px;
+  }
+
+  .product-popup__footer {
+    padding: 10px 12px 12px 12px;
   }
 
   .product-popup__add {
-    padding: 10px 18px;
-    font-size: 11px;
+    padding: 9px 16px;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  .product-popup__close {
+    top: 5px;
+    right: 5px;
+    font-size: 20px;
+    width: 24px;
+    height: 24px;
   }
 }
 
 @media (max-width: 480px) {
   .product-grid {
-    padding: 22px 14px;
+    padding: 20px 12px;
+  }
+
+  .product-grid__header {
+    margin-bottom: 16px;
+  }
+
+  .product-grid__header h2 {
+    font-size: 22px;
   }
 
   .product-grid__wrapper {
-    gap: 12px;
+    gap: 10px;
+  }
+
+  /* Quick View Extra Small - Horizontal */
+  .product-quick-view__box {
+    min-width: 140px;
+    padding: 6px;
+    gap: 6px;
+  }
+
+  .product-quick-view__image-wrapper {
+    width: 50px;
+    height: 50px;
+  }
+
+  .product-quick-view__content {
+    padding-right: 14px;
+  }
+
+  .product-quick-view__title {
+    font-size: 10px;
+  }
+
+  .product-quick-view__price {
+    font-size: 10px;
   }
 
   .product-popup__card {
-    max-width: 290px;
+    max-width: 280px;
+  }
+
+  .product-popup__top {
+    padding: 10px;
+  }
+
+  .product-popup__image-wrapper {
+    width: 65px;
+  }
+
+  .product-popup__title {
+    font-size: 12px;
+  }
+
+  .product-popup__price {
+    font-size: 12px;
+  }
+
+  .product-popup__description {
+    font-size: 9px;
+  }
+
+  .product-popup__options {
+    padding: 0 10px;
+  }
+
+  .product-popup__footer {
+    padding: 8px 10px 10px 10px;
   }
 }
 </style>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const popup = document.querySelector('.product-popup')
-  const popupImg = popup.querySelector('.product-popup__image')
-  const title = popup.querySelector('.product-popup__title')
-  const price = popup.querySelector('.product-popup__price')
-  const desc = popup.querySelector('.product-popup__description')
-  const optionsWrap = popup.querySelector('.product-popup__options')
-  const addBtn = popup.querySelector('.product-popup__add')
 
-  let currentProduct = null
-  let selectedOptions = {}
-  let currentQuickView = null
+  const popup = document.querySelector('.product-popup');
+  const popupImg = popup.querySelector('.product-popup__image');
+  const title = popup.querySelector('.product-popup__title');
+  const price = popup.querySelector('.product-popup__price');
+  const desc = popup.querySelector('.product-popup__description');
+  const optionsWrap = popup.querySelector('.product-popup__options');
+  const addBtn = popup.querySelector('.product-popup__add');
 
+  let currentProduct = null;
+  let selectedOptions = {};
+  let currentQuickView = null;
+
+  // Open quick view on hotspot click
   document.querySelectorAll('.product-grid__hotspot').forEach(btn => {
-    btn.addEventListener('click', async e => {
-      e.stopPropagation()
-      const wrapper = btn.closest('.product-grid__image-wrapper')
-      const handle = wrapper.dataset.handle
-      const quickViewBox = wrapper.querySelector('.product-quick-view__box')
+    btn.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      const wrapper = btn.closest('.product-grid__image-wrapper');
+      const handle = wrapper.dataset.handle;
+      const quickViewBox = wrapper.querySelector('.product-quick-view__box');
 
-      const res = await fetch(`/products/${handle}.js`)
-      currentProduct = await res.json()
+      try {
+        const res = await fetch(`/products/${handle}.js`);
+        currentProduct = await res.json();
 
-      quickViewBox.querySelector('.product-quick-view__image').src = currentProduct.images[0]
-      quickViewBox.querySelector('.product-quick-view__title').textContent = currentProduct.title
-      quickViewBox.querySelector('.product-quick-view__price').textContent = `${(currentProduct.price / 100).toFixed(2)}€`
+        // Set quick view content
+        const quickViewImg = quickViewBox.querySelector('.product-quick-view__image');
+        const quickViewTitle = quickViewBox.querySelector('.product-quick-view__title');
+        const quickViewPrice = quickViewBox.querySelector('.product-quick-view__price');
 
-      document.querySelectorAll('.product-quick-view__box').forEach(b => {
-        if (b !== quickViewBox) b.style.display = 'none'
-      })
+        quickViewImg.src = currentProduct.images[0];
+        quickViewImg.alt = currentProduct.title;
+        quickViewTitle.textContent = currentProduct.title;
+        
+        const priceValue = (currentProduct.price / 100).toFixed(2);
+        quickViewPrice.textContent = `${priceValue}€`;
 
-      quickViewBox.style.display = 'flex'
-      currentQuickView = quickViewBox
-    })
-  })
+        // Close any other open quick views
+        document.querySelectorAll('.product-quick-view__box').forEach(box => {
+          if (box !== quickViewBox) {
+            box.style.display = 'none';
+          }
+        });
 
-  document.addEventListener('click', e => {
-    if (e.target.closest('.product-quick-view__box') && !e.target.closest('.product-quick-view__close')) {
-      openPopup()
+        // Show quick view
+        quickViewBox.style.display = 'flex';
+        currentQuickView = quickViewBox;
+
+      } catch (error) {
+        console.error('Error loading product:', error);
+      }
+    });
+  });
+
+  // Click quick view box to open full popup
+  document.addEventListener('click', (e) => {
+    const quickViewBox = e.target.closest('.product-quick-view__box');
+    if (quickViewBox && !e.target.closest('.product-quick-view__close')) {
+      openFullPopup();
     }
-  })
+  });
 
-  function openPopup() {
-    if (!currentProduct) return
+  // Close quick view buttons
+  document.querySelectorAll('.product-quick-view__close').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const quickViewBox = btn.closest('.product-quick-view__box');
+      quickViewBox.style.display = 'none';
+      currentQuickView = null;
+    });
+  });
 
-    if (currentQuickView) currentQuickView.style.display = 'none'
+  function openFullPopup() {
+    if (!currentProduct) return;
 
-    popupImg.src = currentProduct.images[0]
-    title.textContent = currentProduct.title
-    price.textContent = `${(currentProduct.price / 100).toFixed(2)}€`
+    // Close quick view
+    if (currentQuickView) {
+      currentQuickView.style.display = 'none';
+      currentQuickView = null;
+    }
 
-    const t = document.createElement('div')
-    t.innerHTML = currentProduct.description
-    desc.textContent = (t.textContent || '').substring(0,130)
+    // Set full popup content
+    popupImg.src = currentProduct.images[0];
+    popupImg.alt = currentProduct.title;
+    title.textContent = currentProduct.title;
 
-    optionsWrap.innerHTML = ''
-    selectedOptions = {}
+    const priceValue = (currentProduct.price / 100).toFixed(2);
+    price.textContent = `${priceValue}€`;
 
-    popup.setAttribute('aria-hidden','false')
-    document.body.style.overflow = 'hidden'
+    // Set description
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = currentProduct.description;
+    const descText = tempDiv.textContent || tempDiv.innerText || '';
+    desc.textContent = descText.substring(0, 130) + (descText.length > 130 ? '...' : '');
+
+    // Build options - COLOR FIRST, then others
+    optionsWrap.innerHTML = '';
+    selectedOptions = {};
+
+    if (currentProduct.options && currentProduct.options.length > 0) {
+      // Separate color and other options
+      const colorOption = currentProduct.options.find(opt => opt.name.toLowerCase() === 'color');
+      const otherOptions = currentProduct.options.filter(opt => opt.name.toLowerCase() !== 'color');
+
+      // Render COLOR first if it exists
+      if (colorOption) {
+        renderColorOption(colorOption);
+      }
+
+      // Then render other options (Size, etc.)
+      otherOptions.forEach(opt => {
+        // Skip default "Title" option
+        if (opt.name === 'Title' && opt.values.length === 1 && opt.values[0] === 'Default Title') {
+          return;
+        }
+        renderDropdownOption(opt);
+      });
+    }
+
+    // Show full popup
+    popup.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
   }
 
+  // Render color option as buttons
+  function renderColorOption(opt) {
+    const group = document.createElement('div');
+    group.className = 'option-group';
+
+    const label = document.createElement('label');
+    label.textContent = opt.name;
+    group.appendChild(label);
+
+    const colorWrapper = document.createElement('div');
+    colorWrapper.className = 'color-options-wrapper';
+
+    opt.values.forEach((v, idx) => {
+      const colorBtn = document.createElement('button');
+      colorBtn.className = 'color-option' + (idx === 0 ? ' active' : '');
+      colorBtn.textContent = v;
+      colorBtn.dataset.value = v;
+      colorBtn.dataset.optionName = opt.name;
+      colorBtn.type = 'button';
+
+      colorBtn.addEventListener('click', () => {
+        colorWrapper.querySelectorAll('.color-option').forEach(b => b.classList.remove('active'));
+        colorBtn.classList.add('active');
+        selectedOptions[opt.name] = v;
+      });
+
+      colorWrapper.appendChild(colorBtn);
+    });
+
+    group.appendChild(colorWrapper);
+    optionsWrap.appendChild(group);
+    selectedOptions[opt.name] = opt.values[0];
+  }
+
+  // Render other options as dropdowns
+  function renderDropdownOption(opt) {
+    const group = document.createElement('div');
+    group.className = 'option-group';
+
+    const label = document.createElement('label');
+    label.textContent = opt.name;
+    group.appendChild(label);
+
+    const select = document.createElement('select');
+    select.dataset.optionName = opt.name;
+
+    opt.values.forEach(v => {
+      const option = document.createElement('option');
+      option.value = v;
+      option.textContent = v;
+      select.appendChild(option);
+    });
+
+    select.addEventListener('change', () => {
+      selectedOptions[opt.name] = select.value;
+    });
+
+    group.appendChild(select);
+    optionsWrap.appendChild(group);
+    selectedOptions[opt.name] = opt.values[0];
+  }
+
+  // Close full popup
   const closePopup = () => {
-    popup.setAttribute('aria-hidden','true')
-    document.body.style.overflow = ''
-  }
+    popup.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
 
-  popup.querySelector('.product-popup__close').addEventListener('click', closePopup)
-  popup.querySelector('.product-popup__overlay').addEventListener('click', closePopup)
-})
+  popup.querySelector('.product-popup__close').addEventListener('click', closePopup);
+  popup.querySelector('.product-popup__overlay').addEventListener('click', closePopup);
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (popup.getAttribute('aria-hidden') === 'false') {
+        closePopup();
+      } else if (currentQuickView) {
+        currentQuickView.style.display = 'none';
+        currentQuickView = null;
+      }
+    }
+  });
+
+  // Add to cart
+  addBtn.addEventListener('click', async () => {
+    if (!currentProduct) return;
+
+    try {
+      let variant;
+      
+      // If no options or only default title
+      if (Object.keys(selectedOptions).length === 0) {
+        variant = currentProduct.variants[0];
+      } else {
+        // Find matching variant
+        const optionValues = Object.values(selectedOptions);
+        variant = currentProduct.variants.find(v =>
+          optionValues.every(val => v.options.includes(val))
+        );
+      }
+
+      if (!variant) {
+        alert('Please select all options');
+        return;
+      }
+
+      // Disable button during processing
+      addBtn.disabled = true;
+      const originalText = addBtn.innerHTML;
+      addBtn.innerHTML = 'ADDING...';
+
+      // Add main product to cart
+      await fetch('/cart/add.js', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ id: variant.id, quantity: 1 })
+      });
+
+      // Special rule: Add jacket if Black + Medium selected
+      const optionValues = Object.values(selectedOptions);
+      if (optionValues.includes('Black') && optionValues.includes('Medium')) {
+        try {
+          const jacketRes = await fetch('/products/soft-winter-jacket.js');
+          const jacket = await jacketRes.json();
+
+          await fetch('/cart/add.js', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ id: jacket.variants[0].id, quantity: 1 })
+          });
+        } catch (error) {
+          console.error('Error adding bonus jacket:', error);
+        }
+      }
+
+      // Show success state
+      addBtn.innerHTML = 'ADDED ✓';
+      
+      setTimeout(() => {
+        closePopup();
+        addBtn.disabled = false;
+        addBtn.innerHTML = originalText;
+      }, 800);
+      
+      // Optional: Trigger cart update
+      if (window.theme && window.theme.cartUpdateCallbacks) {
+        window.theme.cartUpdateCallbacks();
+      }
+
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+      addBtn.disabled = false;
+      addBtn.innerHTML = 'ADD TO CART <span class="arrow">→</span>';
+      alert('There was an error adding to cart. Please try again.');
+    }
+  });
+
+});
 </script>
 
 {% schema %}
 {
   "name": "Product Grid",
   "settings": [
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Tisso vision in the wild" }
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Tisso vision in the wild"
+    }
   ],
   "blocks": [
     {
       "type": "product",
       "name": "Product",
       "settings": [
-        { "type": "product", "id": "product", "label": "Select product" }
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select product"
+        }
       ]
     }
   ],

@@ -1,5 +1,6 @@
 <section class="gift-banner">
 
+  <!-- TOP BAR (ABOVE IMAGE) -->
   <div class="gift-banner__topbar">
     <button class="gift-banner__hamburger" aria-label="Menu">
       <span></span>
@@ -15,16 +16,19 @@
       {{ section.settings.top_text }}
     </div>
 
-    <a href="{{ section.settings.top_button_link }}" class="gift-banner__topbtn">
+    <a href="{{ section.settings.top_button_link }}"
+       class="gift-banner__topbtn">
       <span>{{ section.settings.top_button_text }} →</span>
     </a>
   </div>
 
+  <!-- MOBILE CONTENT (shows on mobile only) -->
   <div class="gift-banner__mobile-content">
     <h1>{{ section.settings.heading }}</h1>
     <p>{{ section.settings.mobile_subheading }}</p>
   </div>
 
+  <!-- DESKTOP IMAGE AREA -->
   <div class="gift-banner__image gift-banner__image--desktop"
        style="background-image: url({{ section.settings.background | image_url }});">
 
@@ -32,26 +36,31 @@
       <h1>{{ section.settings.heading }}</h1>
       <p>{{ section.settings.subheading }}</p>
 
-      <a href="{{ section.settings.button_link }}" class="gift-banner__btn">
+      <a href="{{ section.settings.button_link }}"
+         class="gift-banner__btn">
         <span>{{ section.settings.button_text }} →</span>
       </a>
     </div>
 
   </div>
 
+  <!-- MOBILE IMAGE AREA -->
   <div class="gift-banner__image gift-banner__image--mobile"
        style="background-image: url({{ section.settings.mobile_background | image_url }});">
 
-    <a href="{{ section.settings.button_link }}" class="gift-banner__btn">
+    <a href="{{ section.settings.button_link }}"
+       class="gift-banner__btn">
       <span>{{ section.settings.button_text }} →</span>
     </a>
 
   </div>
 
+  <!-- FOOTER (BELOW IMAGE) -->
   <div class="gift-banner__footer gift-banner__footer--desktop">
     {{ section.settings.footer_text }}
   </div>
 
+  <!-- MOBILE FOOTER -->
   <div class="gift-banner__footer gift-banner__footer--mobile">
     {{ section.settings.mobile_footer_text }}
   </div>
@@ -59,10 +68,15 @@
 </section>
 
 <style>
+/* =========================================================
+   Gift Guide Banner Styles
+   ========================================================= */
+
+/* Hamburger menu - hidden on desktop */
 .gift-banner__hamburger {
   display: none;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
   background: none;
   border: none;
   padding: 0;
@@ -70,29 +84,34 @@
 }
 
 .gift-banner__hamburger span {
-  width: 22px;
+  width: 20px;
   height: 2px;
   background: #000;
   display: block;
 }
 
+/* TOP BAR */
 .gift-banner__topbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 28px 48px;
+  padding: 24px 40px;
   background: #f5f5f5;
 }
 
 .gift-banner__brand {
   font-weight: 700;
-  letter-spacing: 1.2px;
-  font-size: 21px;
+  letter-spacing: 1px;
+  font-size: 20px;
 }
 
 .gift-banner__toptext {
-  font-size: 15px;
+  font-size: 14px;
 }
+
+/* =============================
+   BUTTON SLIDE EFFECT
+   ============================= */
 
 .gift-banner__topbtn,
 .gift-banner__btn {
@@ -107,6 +126,7 @@
   z-index: 2;
 }
 
+/* sliding layer */
 .gift-banner__topbtn::before,
 .gift-banner__btn::before {
   content: "";
@@ -119,9 +139,10 @@
   z-index: 1;
 }
 
+/* Yellow button */
 .gift-banner__topbtn {
   background: #f2e400;
-  padding: 14px 22px;
+  padding: 12px 18px;
   color: #000;
   font-weight: 600;
 }
@@ -138,10 +159,11 @@
   color: #fff;
 }
 
+/* Black button */
 .gift-banner__btn {
   background: #000;
   color: #fff;
-  padding: 14px 44px;
+  padding: 12px 40px;
   display: inline-block;
 }
 
@@ -157,6 +179,7 @@
   color: #000;
 }
 
+/* Hide mobile content on desktop */
 .gift-banner__mobile-content {
   display: none;
 }
@@ -169,38 +192,44 @@
   display: none;
 }
 
+/* IMAGE AREA */
 .gift-banner__image {
   position: relative;
-  min-height: 720px;
+  min-height: 680px;
   background-size: cover;
   background-position: center;
 }
 
 .gift-banner__content {
   position: absolute;
-  left: 72px;
-  bottom: 24px;
-  max-width: 400px;
+  left: 60px;
+  bottom: 10px;
+  max-width: 370px;
 }
 
 .gift-banner__content h1 {
-  font-size: 58px;
-  line-height: 1.08;
-  margin-bottom: 18px;
+  font-size: 56px;
+  line-height: 1.05;
+  margin-bottom: 16px;
   white-space: nowrap;
 }
 
 .gift-banner__content p {
-  font-size: 16px;
-  margin-bottom: 28px;
+  font-size: 15px;
+  margin-bottom: 24px;
 }
 
+/* FOOTER */
 .gift-banner__footer {
   text-align: center;
-  padding: 18px 24px;
-  font-size: 13px;
+  padding: 16px 20px;
+  font-size: 12px;
   background: #f5f5f5;
 }
+
+/* =========================================================
+   MOBILE STYLES
+   ========================================================= */
 
 @media (max-width: 768px) {
 
@@ -213,7 +242,7 @@
   .gift-banner__topbar {
     position: relative;
     justify-content: center;
-    padding: 22px 20px;
+    padding: 20px;
   }
 
   .gift-banner__toptext,
@@ -222,14 +251,14 @@
   }
 
   .gift-banner__brand {
-    font-size: 21px;
-    letter-spacing: 0.12em;
+    font-size: 20px;
+    letter-spacing: 0.1em;
     text-align: center;
   }
 
   .gift-banner__mobile-content {
     display: block;
-    padding: 28px 22px 36px;
+    padding: 24px 20px 32px;
     text-align: center;
     background: #fff;
   }
@@ -247,7 +276,7 @@
   }
 
   .gift-banner__image {
-    min-height: 360px;
+    min-height: 320px;
   }
 
   .gift-banner__btn {
@@ -255,12 +284,12 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 220px;
-    height: 54px;
+    width: 200px;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
   }
 
@@ -273,8 +302,8 @@
   }
 
   .gift-banner__footer {
-    font-size: 12px;
-    padding: 18px;
+    font-size: 11px;
+    padding: 16px;
   }
 }
 </style>
