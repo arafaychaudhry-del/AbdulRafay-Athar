@@ -6,7 +6,8 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "sections": {
     "hero_jVaWmY": {
       "type": "hero",
@@ -65,6 +66,7 @@
         "custom_mobile_media": false,
         "media_type_1_mobile": "image",
         "media_type_2_mobile": "image",
+        "link": "",
         "open_in_new_tab": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -281,10 +283,83 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "gift_banner_KeLict": {
+      "type": "gift-banner",
+      "name": "Gift Guide Banner",
+      "settings": {
+        "background": "shopify://shop_images/Group_1000008197.png",
+        "brand_text": "TISSO VISON",
+        "top_text": "Find the ideal gift for your loved ones.",
+        "top_button_text": "CHOOSE GIFT",
+        "top_button_link": "",
+        "heading": "The Gift Guide",
+        "subheading": "",
+        "mobile_subheading": "",
+        "button_text": "SHOP NOW",
+        "button_link": "",
+        "footer_text": "",
+        "mobile_footer_text": ""
+      }
+    },
+    "product_grid_tgcKCT": {
+      "type": "product-grid",
+      "blocks": {
+        "product_GGjVqC": {
+          "type": "product",
+          "settings": {
+            "product": "black-leather-bag"
+          }
+        },
+        "product_zyBdLz": {
+          "type": "product",
+          "settings": {
+            "product": "blue-silk-tuxedo"
+          }
+        },
+        "product_fpceaA": {
+          "type": "product",
+          "settings": {
+            "product": "chequered-red-shirt"
+          }
+        },
+        "product_wh3PjF": {
+          "type": "product",
+          "settings": {
+            "product": "classic-leather-jacket"
+          }
+        },
+        "product_TXcRjW": {
+          "type": "product",
+          "settings": {
+            "product": "classic-varsity-top"
+          }
+        },
+        "product_CDaV3V": {
+          "type": "product",
+          "settings": {
+            "product": "dark-denim-top"
+          }
+        }
+      },
+      "block_order": [
+        "product_GGjVqC",
+        "product_zyBdLz",
+        "product_fpceaA",
+        "product_wh3PjF",
+        "product_TXcRjW",
+        "product_CDaV3V"
+      ],
+      "name": "Product Grid",
+      "settings": {
+        "heading": "Tisso vision in the wild"
+      }
     }
   },
   "order": [
     "hero_jVaWmY",
-    "product_list_fa6P9H"
+    "product_list_fa6P9H",
+    "gift_banner_KeLict",
+    "product_grid_tgcKCT"
   ]
 }

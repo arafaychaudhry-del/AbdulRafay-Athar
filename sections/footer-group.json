@@ -11,24 +11,6 @@
   "type": "footer",
   "name": "Footer",
   "sections": {
-    "gift_banner_dNen7E": {
-      "type": "gift-banner",
-      "name": "Gift Guide Banner",
-      "settings": {
-        "background": "shopify://shop_images/Group_1000008197.png",
-        "brand_text": "TISSO VISON",
-        "top_text": "Find the ideal gift for your loved ones.",
-        "top_button_text": "CHOOSE GIFT",
-        "top_button_link": "",
-        "heading": "The Gift Guide",
-        "subheading": "",
-        "mobile_subheading": "",
-        "button_text": "SHOP NOW",
-        "button_link": "",
-        "footer_text": "",
-        "mobile_footer_text": ""
-      }
-    },
     "footer_m9NzUG": {
       "type": "footer",
       "blocks": {
@@ -225,7 +207,6 @@
     }
   },
   "order": [
-    "gift_banner_dNen7E",
     "footer_m9NzUG",
     "footer_utilities_jLGE8U"
   ]
